@@ -1,0 +1,44 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #070c14;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Panels — subtle depth for main UI cards */
+.ds-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1rem;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* Smooth transitions on interactive elements */
+button, select, input { transition: all 0.15s ease; }
+button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid rgba(34,211,160,0.5);
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection { background: rgba(34,211,160,0.25); color: #f1f5f9; }
+
+/* Lightweight charts container */
+.tv-lightweight-charts { border-radius: 8px; }
+
+/* Animate-pulse for status dot */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.animate-pulse { animation: pulse 2s ease-in-out infinite; }
