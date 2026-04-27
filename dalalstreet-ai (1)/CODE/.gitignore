@@ -1,15 +1,10 @@
-# ============================================================
-# DalalStreet AI — .gitignore
-# ============================================================
 
-# ── Environment & Secrets ─────────────────────────────────────
 .env
 .env.*
 !.env.example
 *.secret
 secrets/
 
-# ── Python ───────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
@@ -31,7 +26,6 @@ htmlcov/
 *.cover
 celerybeat-schedule
 
-# ── Node / Next.js ────────────────────────────────────────────
 node_modules/
 .next/
 out/
@@ -40,7 +34,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# ── ML / Data ─────────────────────────────────────────────────
 *.pt
 *.pth
 *.onnx
@@ -50,12 +43,10 @@ data/raw/
 data/processed/
 models/weights/
 
-# ── Database ──────────────────────────────────────────────────
 *.db
 *.sqlite3
 *.sql.gz
 
-# ── IDE / OS ──────────────────────────────────────────────────
 .idea/
 .vscode/
 *.swp
@@ -63,9 +54,7 @@ models/weights/
 .DS_Store
 Thumbs.db
 
-# ── Logs ─────────────────────────────────────────────────────
 logs/
 *.log
 
-# ── Docker volumes ────────────────────────────────────────────
 docker-data/
