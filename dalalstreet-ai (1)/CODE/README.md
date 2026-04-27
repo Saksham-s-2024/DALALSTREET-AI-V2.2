@@ -304,6 +304,3 @@ Based on the PRD phases:
 
 > ⚠️ **DalalStreet AI is a student project for educational purposes only.** It is NOT registered with SEBI as an investment advisor. All AI-generated reports are for informational purposes and do not constitute financial advice. Past performance is not indicative of future results. Please consult a SEBI-registered financial advisor before making investment decisions. The developers are not responsible for any financial losses incurred through the use of this platform.
 
----
-
-*Built with ❤️ as a 3rd year Computer Science project | DalalStreet AI v2.0*
