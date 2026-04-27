@@ -23,8 +23,6 @@ from app.services.report_archive import archive_user_report
 
 router = APIRouter(prefix="/api/v1")
 
-# ── Request / Response Models ──────────────────────────────────
-
 class TraderReportRequest(BaseModel):
     symbol: str = Field(..., min_length=1, max_length=20)
     timestamp: str | None = None
@@ -63,8 +61,6 @@ class QuoteRequest(BaseModel):
         return sanitize_symbol(v)
 
 
-# ── Market Status ─────────────────────────────────────────────
-
 @router.get("/market/status")
 @limiter.limit("30/minute")
 async def market_status(request: Request):
@@ -77,8 +73,6 @@ async def list_symbols(request: Request):
     return {"symbols": NIFTY50_SYMBOLS}
 
 
-# ── Live Quote ────────────────────────────────────────────────
-
 @router.get("/market/quote/{symbol}")
 @limiter.limit("60/minute")
 async def get_quote(request: Request, symbol: str):
@@ -89,8 +83,7 @@ async def get_quote(request: Request, symbol: str):
     return await fetch_quote(clean)
 
 
-# ── Historical OHLC ───────────────────────────────────────────
-
+#Historical OHLC 
 @router.get("/market/ohlc/{symbol}")
 @limiter.limit("20/minute")
 async def get_ohlc(request: Request, symbol: str, days: int = 5, interval: str = "1minute"):
@@ -107,8 +100,7 @@ async def get_ohlc(request: Request, symbol: str, days: int = 5, interval: str =
     return {"symbol": clean, "interval": interval, "candles": candles}
 
 
-# ── Trader Mode — Risk Report ─────────────────────────────────
-
+# Trader Mode — Risk Report 
 @router.post("/trader/report")
 @limiter.limit("10/minute")
 async def trader_report(
@@ -131,7 +123,7 @@ async def trader_report(
     return report
 
 
-# ── Investor Mode — Recommendation Report ────────────────────
+# Investor Mode — Recommendation Report
 
 @router.post("/investor/report")
 @limiter.limit("5/minute")
@@ -173,7 +165,7 @@ def _default_symbols(asset_type: str) -> list[str]:
     return defaults.get(key, NIFTY50_SYMBOLS[:5])
 
 
-# ── Saved reports (requires login) ───────────────────────────
+# Saved reports (requires login)
 
 class ReportHistoryItem(BaseModel):
     id: str
@@ -213,8 +205,7 @@ async def reports_history(
     }
 
 
-# ── Health Check ─────────────────────────────────────────────
-
+# Health Check
 @router.get("/health")
 async def health():
     db = await check_database_connection()
