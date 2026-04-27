@@ -22,7 +22,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── App ───────────────────────────────────────────────────────
+# App 
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
@@ -30,12 +30,12 @@ app = FastAPI(
     redoc_url=None,
 )
 
-# ── Rate Limiting ─────────────────────────────────────────────
+# Rate Limiting 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.add_middleware(SlowAPIMiddleware)
 
-# ── CORS ──────────────────────────────────────────────────────
+# CORS 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
@@ -44,12 +44,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Routes ────────────────────────────────────────────────────
+# Routes 
 app.include_router(router)
 app.include_router(auth.router)
 
 
-# ── WebSocket — Live Price Feed ───────────────────────────────
+# WebSocket — Live Price Feed 
 class ConnectionManager:
     def __init__(self):
         self.active: dict[str, list[WebSocket]] = {}
@@ -106,7 +106,7 @@ async def websocket_market(websocket: WebSocket, symbol: str):
         manager.disconnect(symbol, websocket)
 
 
-# ── Global Exception Handler ──────────────────────────────────
+# Global Exception Handler 
 @app.exception_handler(Exception)
 async def global_handler(request: Request, exc: Exception):
     logger.exception("Unhandled error: %s", exc)
